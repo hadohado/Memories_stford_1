@@ -10,23 +10,68 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-        return HStack(content: {
-            ForEach(0..<4, content: {index in // make 4 seperate pre-views
+        return HStack ( content: {
+            ForEach(0..<4, content: {index in
                 ZStack(content: {
                     RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
                     RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3.0)
                     Text("😆").padding().font(Font.largeTitle)
                 })
             })
-            
-            
         })
-        
         .padding()
         .foregroundColor(Color.orange)
-        //.font(Font.largeTitle) <-- set font for all text inside Zstack
     }
 }
+
+/* 55:10
+   in swift, if last argument of a function #1 is a function #2 call itself (shown in curly braces { ... }
+   then we can remove the label, and put whole function #2 outside of function #1
+ 
+    ForEach (   0..<4 ,
+                content: { ... }
+            )
+
+    ForEach ( 0..<4 )
+                { ... }     <--- alternative way to above code
+ 
+ 
+ */
+
+/*    52:25 min
+ 
+ var body: some View {
+     return HStack (spacing: 7, content: {
+         ForEach(0..<4, content: {index in
+             ZStack(content: {
+                 RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
+                 RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3.0)
+                 Text("😆").padding().font(Font.largeTitle)
+             })
+         })
+     })
+ }
+ 
+ var body: some View {
+     return HStack ( content: { // HStack arrange Views horizontally
+         ForEach(0..<4, content: {index in // make 4 seperate pre-views
+             ZStack(content: {
+                 RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
+                 RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3.0)
+                 Text("😆").padding().font(Font.largeTitle)
+             })
+         })
+         
+         
+     })
+     
+     .padding()
+     .foregroundColor(Color.orange)
+     //.font(Font.largeTitle) <-- set font for all text inside Zstack
+ }
+ */
+
+// ------------------------------------------------------------------------------
 
 /*
  var body: some View {
