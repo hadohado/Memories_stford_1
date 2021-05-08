@@ -8,14 +8,107 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        return HStack(content: {
+            ForEach(0..<4, content: {index in // make 4 seperate pre-views
+                ZStack(content: {
+                    RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
+                    RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3.0)
+                    Text("😆").padding().font(Font.largeTitle)
+                })
+            })
+            
+            
+        })
+        
+        .padding()
+        .foregroundColor(Color.orange)
+        //.font(Font.largeTitle) <-- set font for all text inside Zstack
     }
 }
+
+/*
+ var body: some View {
+     // ForEach object will iterate over each iterableThingData
+     // and build the content for each
+
+     // return ForEach(0..<4, content: {_ in
+     return ForEach(0..<4, content: {index in // make 4 seperate pre-views
+         ZStack(content: {
+         RoundedRectangle(cornerRadius: 10.0).fill(Color.white) // guarantee white background even in dark mode
+         RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3.0)
+         Text("😆").padding().font(Font.largeTitle)
+     })
+                     })
+     .padding()
+     .foregroundColor(Color.orange)
+     //.font(Font.largeTitle) <-- set font for all text inside Zstack
+ }
+*/
+
+// ForEach is not a layout view like ZStack so it will show 4 seperate pre-views
+// in simulation or on phone, will show only 1st view and hide the other somewhere
+
+// return ForEach(iterableThingData, content:
+// iterableThingData can be an array
+//    or range like 0..<4
+
+/*
+    ForEach() is a combiner kind of View
+    it will return multiple Views
+ */
+
+/*
+ single card:
+ 
+ var body: some View {
+     return ZStack(content: {
+         RoundedRectangle(cornerRadius: 10.0).fill(Color.white) // guarantee white background even in dark mode
+         RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3.0)
+         Text("😆").padding().font(Font.largeTitle)
+     })
+     .padding()
+     .foregroundColor(Color.orange)
+     //.font(Font.largeTitle) <-- set font for all text inside Zstack
+ }
+ */
+
+/*
+var body: some View {
+    return ZStack(content: {
+        // RoundedRectangle(cornerRadius: 10.0).stroke().foregroundColor(Color.orange)
+        RoundedRectangle(cornerRadius: 10.0).stroke()
+        Text("😆").padding()
+    })
+    .padding()
+    .foregroundColor(Color.orange)
+}
+ */
+
+
+// RoundedRectangle behaves like a View, but also like a shape
+// shape can be stroked (draw outline, not filled with blk color)
+// stroke() returns a View !
+// so RoundedRectangle object calling it's function stroke() will return a View
+// object calling Swift function call by doing this  .stroke()
+// note the dot in .stroked()
+
+// this whole code is a View (returns a View):  RoundedRect().stroke()
+//      so we can add on .foreground()  function to it
+
+// dont say foregroundColor(.orange)  wont see orange outline
+// must say foregroundColor(Color.organge) !
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+
+/*
+ var body: some View {
+     return RoundedRectangle(cornerRadius: 10.0)
+     // Text("Hi, world!").padding()
+ }
+ */
