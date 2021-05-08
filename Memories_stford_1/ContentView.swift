@@ -10,19 +10,45 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-        return HStack ( content: {
-            ForEach(0..<4, content: {index in
-                ZStack(content: {
+        return HStack {
+            ForEach(0..<4) {index in
+                ZStack {
                     RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
                     RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3.0)
                     Text("😆").padding().font(Font.largeTitle)
-                })
-            })
-        })
+                }
+            }
+        }
         .padding()
         .foregroundColor(Color.orange)
     }
 }
+
+/*
+
+ return HStack () {
+     ForEach(0..<4) {index in
+         ZStack() {
+             RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
+             RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3.0)
+             Text("😆").padding().font(Font.largeTitle)
+         }
+     }
+ }
+
+ ......................................
+ 
+ return HStack ( content: {
+     ForEach(0..<4, content: {index in
+         ZStack(content: {
+             RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
+             RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3.0)
+             Text("😆").padding().font(Font.largeTitle)
+         })
+     })
+ })
+
+ */
 
 /* 55:10
    in swift, if last argument of a function #1 is a function #2 call itself (shown in curly braces { ... }
