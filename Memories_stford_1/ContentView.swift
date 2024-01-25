@@ -26,15 +26,17 @@ struct CardView: View {
     var isFaceUp:  Bool  // = true
     
     var body: some View {
-        ZStack {
-            if isFaceUp {
+       VStack {
+          Text("github ! ")
+          ZStack {
+             if isFaceUp {
                 RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
                 RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3.0)
                 Text("😆").padding().font(Font.largeTitle)
-            } else {
+             } else {
                 RoundedRectangle(cornerRadius: 10.0).fill()
-            }
-            
+             }
+          }
         }
     }
 }
